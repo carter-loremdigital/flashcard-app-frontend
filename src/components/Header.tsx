@@ -10,7 +10,7 @@ const Header = (props: Props) => {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
