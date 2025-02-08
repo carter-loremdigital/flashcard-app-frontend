@@ -8,16 +8,10 @@ const Header = (props: Props) => {
   const navigate = useNavigate();
   const { isAuthenticated, logout } = useContext(AuthContext);
 
-  useEffect(() => {
-    console.log("Authentication state updated:", isAuthenticated);
-  }, [isAuthenticated]);
-
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
-
-  // useEffect(() => {}, [isAuthenticated]);
 
   return (
     <AppBar position="static">
@@ -42,12 +36,11 @@ const Header = (props: Props) => {
             </Button>
           )}
 
-          {/* <Button href="/login" color="inherit">
-            Log In
-          </Button> */}
-          <Button href="/signup" color="inherit">
-            Sign Up
-          </Button>
+          {!isAuthenticated && (
+            <Button href="/signup" color="inherit">
+              Sign Up
+            </Button>
+          )}
         </Box>
       </Toolbar>
     </AppBar>
