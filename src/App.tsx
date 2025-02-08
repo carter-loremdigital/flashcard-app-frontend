@@ -5,6 +5,7 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import { AuthProvider } from "./context/AuthContext";
 import DeckDetail from "./pages/DeckDetail";
+import DeckCreate from "./pages/DeckCreate";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/decks/:deckId" element={<DeckDetail />} />
+            <Route path="/decks/create" element={<DeckCreate />} />
           </Routes>
         </Layout>
       </Router>

@@ -63,18 +63,20 @@ const DeckDashboard = (props: Props) => {
       </Typography>
       <Grid2 container spacing={2}>
         <Grid2 size={{ xs: 6, md: 4 }}>
-          <Box
-            sx={{
-              p: 2,
-              border: "1px solid",
-              borderColor: "grey.300",
-              borderRadius: 2,
-              height: 160,
-              boxShadow: "4px 4px 6px 0px rgba(0,0,0,0.5)",
-            }}
-          >
-            <Typography variant="h6">Create a new deck</Typography>
-          </Box>
+          <Link to="/decks/create" style={{ textDecoration: "none" }}>
+            <Box
+              sx={{
+                p: 2,
+                border: "1px solid",
+                borderColor: "grey.300",
+                borderRadius: 2,
+                height: 160,
+                boxShadow: "4px 4px 6px 0px rgba(0,0,0,0.5)",
+              }}
+            >
+              <Typography variant="h6">Create a new deck</Typography>
+            </Box>
+          </Link>
         </Grid2>
         {decks.map((deck) => (
           <Grid2 key={deck.id} size={{ xs: 6, md: 4 }}>
