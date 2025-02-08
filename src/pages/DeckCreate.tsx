@@ -5,18 +5,21 @@ import {
   TextField,
   Button,
   Box,
-  Paper,
   Divider,
 } from "@mui/material";
+import api from "../api";
+import { useNavigate } from "react-router-dom";
 
 interface CardData {
   question: string;
   answer: string;
 }
 
-type Props = {};
+// type Props = {};
 
-const DeckCreate = (props: Props) => {
+const DeckCreate = () => {
+  //props: Props) => {
+
   // State for deck title and description
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -30,6 +33,8 @@ const DeckCreate = (props: Props) => {
 
   // Error message for form validation
   const [error, setError] = useState<string>("");
+
+  const navigate = useNavigate();
 
   // Handler for adding a card to the deck
   const handleAddCard = () => {
@@ -64,24 +69,31 @@ const DeckCreate = (props: Props) => {
       return;
     }
 
-    // Build the deck payload (you can adjust property names based on your backend)
     const deckPayload = {
       name: title,
       description,
-      flashcards: cards, // Assuming your backend accepts an array of flashcards
     };
 
-    // For now, log the payload; later integrate with your backend API (e.g., using Axios)
-    console.log("Deck payload:", deckPayload);
+    try {
+      // 1. Create the deck first
+      const deckResponse = await api.post("/decks/", deckPayload);
+      const deckId = deckResponse.data.id; // Extract the deck ID from the response
 
-    // TODO: Make API call to create the deck.
-    // Example:
-    // try {
-    //   await api.post("/decks/", deckPayload);
-    //   // Redirect or show success message.
-    // } catch (err) {
-    //   setError("Failed to create deck. Please try again.");
-    // }
+      // 2. Build the flashcards payload by including the deck ID in each card
+      const flashcardsPayload = cards.map((card) => ({
+        question: card.question,
+        answer: card.answer,
+        deck: deckId,
+      }));
+
+      // 3. Send a bulk creation request for flashcards
+      await api.post("/flashcards/bulk_create/", flashcardsPayload);
+
+      navigate("/");
+    } catch (err: any) {
+      console.error("Error creating deck or flashcards:", err);
+      setError("Failed to create deck. Please try again.");
+    }
   };
 
   return (
