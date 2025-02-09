@@ -94,7 +94,7 @@ const DeckDetail = (props: Props) => {
       </Typography>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Button>Study</Button>
-        <Button>Edit</Button>
+        <Button href={`/decks/${deck?.id}/edit`}>Edit</Button>
       </Box>
       <Box sx={{ mt: 4 }}>
         {flashcards.length > 0 ? (
