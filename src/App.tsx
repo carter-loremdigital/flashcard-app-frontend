@@ -7,6 +7,7 @@ import { AuthProvider } from "./context/AuthContext";
 import DeckDetail from "./pages/DeckDetail";
 import DeckCreate from "./pages/DeckCreate";
 import DeckEdit from "./pages/DeckEdit";
+import DeckStudy from "./pages/DeckStudy";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/decks/:deckId" element={<DeckDetail />} />
             <Route path="/decks/create" element={<DeckCreate />} />
             <Route path="/decks/:deckId/edit" element={<DeckEdit />} />
+            <Route path="/decks/:deckId/study" element={<DeckStudy />} />
           </Routes>
         </Layout>
       </Router>

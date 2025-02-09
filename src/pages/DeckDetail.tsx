@@ -92,9 +92,13 @@ const DeckDetail = (props: Props) => {
       <Typography variant="subtitle1" gutterBottom>
         {deck?.description || "No description available."}
       </Typography>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Button>Study</Button>
-        <Button href={`/decks/${deck?.id}/edit`}>Edit</Button>
+      <Box sx={{ display: "flex", justifyContent: "end", gap: 1 }}>
+        <Button href={`/decks/${deckId}/study`} variant="contained">
+          Study
+        </Button>
+        <Button href={`/decks/${deckId}/edit`} variant="outlined">
+          Edit
+        </Button>
       </Box>
       <Box sx={{ mt: 4 }}>
         {flashcards.length > 0 ? (

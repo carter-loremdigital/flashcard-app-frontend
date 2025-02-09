@@ -198,7 +198,7 @@ const DeckEdit = (props: Props) => {
             <Button
               variant="outlined"
               color="error"
-              onClick={() => navigate(`/decks/${deck?.id}`)}
+              onClick={() => navigate(`/decks/${deckId}`)}
             >
               Cancel
             </Button>
