@@ -1,1 +1,20 @@
+@import "@fontsource/lexend-mega";
 @import "tailwindcss";
+
+body {
+  /* Base paper color */
+  background-color: #fffff0;
+
+  /* Create grid lines using two linear gradients */
+  background-image: 
+      /* Vertical lines */ linear-gradient(
+      to right,
+      lightblue 2px,
+      transparent 2px
+    ),
+    /* Horizontal lines */
+      linear-gradient(to bottom, lightblue 2px, transparent 2px);
+
+  /* Adjust the size of the grid squares */
+  background-size: 40px 40px;
+}

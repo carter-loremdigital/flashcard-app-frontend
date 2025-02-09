@@ -8,9 +8,11 @@ import {
   CircularProgress,
   Button,
   Divider,
-  Link as MUILink,
 } from "@mui/material";
 import api from "../api";
+import { Edit, Lightbulb } from "@mui/icons-material";
+import BackBar from "../components/BackBar";
+// import { X } from "@mui/icons-material";
 
 // TypeScript interfaces for Deck and Flashcard
 interface Deck {
@@ -81,48 +83,75 @@ const DeckDetail = (props: Props) => {
   }
 
   return (
-    <Container sx={{ py: 8 }}>
-      <Box sx={{ mb: 2 }}>
-        <MUILink href="/">Back</MUILink>
-      </Box>
+    <Container sx={{ my: 8, px: 0 }}>
+      <Box sx={{ borderRadius: 2 }}>
+        <BackBar href="/" />
 
-      <Typography variant="h4" gutterBottom>
-        {deck?.name}
-      </Typography>
-      <Typography variant="subtitle1" gutterBottom>
-        {deck?.description || "No description available."}
-      </Typography>
-      <Box sx={{ display: "flex", justifyContent: "end", gap: 1 }}>
-        <Button href={`/decks/${deckId}/study`} variant="contained">
-          Study
-        </Button>
-        <Button href={`/decks/${deckId}/edit`} variant="outlined">
-          Edit
-        </Button>
-      </Box>
-      <Box sx={{ mt: 4 }}>
-        {flashcards.length > 0 ? (
-          flashcards.map((flashcard) => (
-            <Box
-              key={flashcard.id}
-              sx={{
-                border: "1px solid",
-                borderColor: "grey.300",
-                borderRadius: 2,
-                p: 2,
-                mb: 2,
-              }}
-            >
-              <Typography variant="h6">{flashcard.question}</Typography>
-              <Divider sx={{ my: 2 }} />
-              <Typography variant="body1">{flashcard.answer}</Typography>
-            </Box>
-          ))
-        ) : (
-          <Typography variant="body1">
-            No flashcards found for this deck.
+        <Box
+          sx={{
+            border: "3px solid black",
+            borderTop: "none",
+            backgroundColor: "white",
+            p: 4,
+            boxShadow: "4px 4px 0px black",
+            borderRadius: 2,
+          }}
+        >
+          <Typography variant="h4" gutterBottom>
+            {deck?.name}
           </Typography>
-        )}
+          <Typography variant="subtitle1" gutterBottom>
+            {deck?.description || "No description available."}
+          </Typography>
+          <Box sx={{ display: "flex", justifyContent: "end", gap: 1 }}>
+            <Button href={`/decks/${deckId}/edit`} variant="outlined">
+              <Edit sx={{ marginRight: "4px" }} />
+              Edit
+            </Button>
+            <Button
+              href={`/decks/${deckId}/study`}
+              variant="contained"
+              disabled={flashcards?.length ? false : true}
+            >
+              <Lightbulb sx={{ marginRight: "4px" }} />
+              Study
+            </Button>
+          </Box>
+          <Box sx={{ mt: 4 }}>
+            {flashcards.length > 0 ? (
+              flashcards.map((flashcard) => (
+                <Box
+                  key={flashcard.id}
+                  sx={{
+                    border: "2px solid black",
+                    // borderColor: "grey.300",
+                    borderRadius: 2,
+                    p: 2,
+                    mb: 2,
+                    boxShadow: "2px 2px 0px black",
+                    backgroundColor: "#fffff0",
+                  }}
+                >
+                  <Typography variant="h6">Q: {flashcard.question}</Typography>
+                  <Divider
+                    sx={{
+                      my: 2,
+                      borderBottomWidth: 2,
+                      borderColor: "#ff5722",
+                      // borderColor: "lightblue",
+                      borderBottomStyle: "dashed",
+                    }}
+                  />
+                  <Typography variant="body1">A: {flashcard.answer}</Typography>
+                </Box>
+              ))
+            ) : (
+              <Typography variant="body1">
+                No flashcards found for this deck.
+              </Typography>
+            )}
+          </Box>
+        </Box>
       </Box>
     </Container>
   );

@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
+import { Close, Save, Delete, Add } from "@mui/icons-material";
+import BackBar from "../components/BackBar";
 
 interface CardData {
   question: string;
@@ -97,129 +99,157 @@ const DeckCreate = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ py: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Create a New Deck
-      </Typography>
-      <form onSubmit={handleSubmit}>
-        {/* Save Deck Button */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "baseline",
-            justifyContent: "space-between",
-          }}
-        >
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            // fullWidth
-            sx={{ mb: 4, mt: 2 }}
-          >
-            Save Deck
-          </Button>
-          <Button href="/" color="error">
-            Cancel
-          </Button>
-        </Box>
-        {/* Deck Title Input */}
-        <TextField
-          label="Deck Title"
-          value={title}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setTitle(e.target.value)
-          }
-          fullWidth
-          margin="normal"
-          required
-        />
+    <Container sx={{ my: 8, px: 0 }}>
+      <BackBar href="/" />
 
-        {/* Deck Description Input */}
-        <TextField
-          label="Deck Description"
-          value={description}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setDescription(e.target.value)
-          }
-          fullWidth
-          margin="normal"
-          multiline
-          rows={3}
-        />
-
-        {/* Section for Adding Cards */}
-        <Typography variant="h6" sx={{ mt: 3 }}>
-          Add Cards
-        </Typography>
-        <TextField
-          label="Card Question"
-          value={cardQuestion}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setCardQuestion(e.target.value)
-          }
-          fullWidth
-          margin="normal"
-          //   required
-        />
-        <TextField
-          label="Card Answer"
-          value={cardAnswer}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setCardAnswer(e.target.value)
-          }
-          fullWidth
-          margin="normal"
-          //   required
-        />
-
-        {error && (
-          <Typography color="error" variant="body2" sx={{ mt: 1 }}>
-            {error}
+      <Box
+        sx={{
+          border: "3px solid black",
+          borderTop: "none",
+          backgroundColor: "white",
+          p: 4,
+          boxShadow: "4px 4px 0px black",
+          borderRadius: 2,
+        }}
+      >
+        <Container maxWidth="sm" sx={{ py: 4 }}>
+          <Typography variant="h4" gutterBottom>
+            Create a New Deck
           </Typography>
-        )}
+          <form onSubmit={handleSubmit}>
+            {/* Save Deck Button */}
 
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={handleAddCard}
-          sx={{ mt: 2 }}
-        >
-          Add Card
-        </Button>
+            {/* Deck Title Input */}
+            <TextField
+              label="Deck Title"
+              value={title}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setTitle(e.target.value)
+              }
+              fullWidth
+              margin="normal"
+              required
+            />
 
-        {/* List of Added Cards */}
-        {cards.length > 0 && (
-          <Box sx={{ mt: 3 }}>
-            <Typography variant="subtitle1">Cards Added:</Typography>
-            {cards.map((card, index) => (
-              <Box
-                key={index}
-                sx={{
-                  border: "1px solid",
-                  borderColor: "grey.300",
-                  borderRadius: 2,
-                  p: 2,
-                  mb: 2,
-                }}
+            {/* Deck Description Input */}
+            <TextField
+              label="Deck Description"
+              value={description}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setDescription(e.target.value)
+              }
+              fullWidth
+              margin="normal"
+              multiline
+              rows={3}
+            />
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "end",
+                gap: 1,
+                mb: 4,
+                mt: 2,
+              }}
+            >
+              <Button href="/" color="error" startIcon={<Close />}>
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                startIcon={<Save />}
               >
-                <Typography variant="h6">{card.question}</Typography>
-                <Divider sx={{ my: 2 }} />
-                <Typography variant="body1">{card.answer}</Typography>
-                <Box sx={{ display: "flex", justifyContent: "end" }}>
-                  <Button
-                    variant="text"
-                    onClick={() => handleDeleteCard(index)}
-                    color="error"
+                Save
+              </Button>
+            </Box>
+
+            {/* Section for Adding Cards */}
+            <Typography variant="h6" sx={{ mt: 3 }}>
+              Add Cards
+            </Typography>
+            <TextField
+              label="Card Question"
+              value={cardQuestion}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setCardQuestion(e.target.value)
+              }
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Card Answer"
+              value={cardAnswer}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setCardAnswer(e.target.value)
+              }
+              fullWidth
+              margin="normal"
+            />
+
+            {error && (
+              <Typography color="error" variant="body2" sx={{ mt: 1 }}>
+                {error}
+              </Typography>
+            )}
+
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={handleAddCard}
+              sx={{ mt: 2 }}
+              startIcon={<Add />}
+            >
+              Add Card
+            </Button>
+
+            {/* List of Added Cards */}
+            {cards.length > 0 && (
+              <Box sx={{ mt: 3 }}>
+                <Typography variant="subtitle1">Cards Added:</Typography>
+                {cards.map((card, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      border: "2px solid black",
+                      // borderColor: "grey.300",
+                      borderRadius: 2,
+                      p: 2,
+                      mb: 2,
+                      boxShadow: "2px 2px 0px black",
+                      backgroundColor: "#fffff0",
+                    }}
                   >
-                    Delete
-                  </Button>
-                </Box>
+                    <Typography variant="h6">Q: {card.question}</Typography>
+                    <Divider
+                      sx={{
+                        my: 2,
+                        borderBottomWidth: 2,
+                        borderColor: "#ff5722",
+                        // borderColor: "lightblue",
+                        borderBottomStyle: "dashed",
+                      }}
+                    />
+                    <Typography variant="body1">A: {card.answer}</Typography>
+                    <Box sx={{ display: "flex", justifyContent: "end" }}>
+                      <Button
+                        variant="text"
+                        onClick={() => handleDeleteCard(index)}
+                        color="error"
+                      >
+                        <Delete />
+                        Delete
+                      </Button>
+                    </Box>
+                  </Box>
+                ))}
               </Box>
-            ))}
-          </Box>
-        )}
-      </form>
+            )}
+          </form>
+        </Container>
+      </Box>
     </Container>
   );
 };

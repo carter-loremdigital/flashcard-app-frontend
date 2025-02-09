@@ -14,11 +14,19 @@ const Header = (props: Props) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: "transparent",
+        boxShadow: "none",
+        // borderBottom: "1px solid lightblue",
+        color: "black",
+      }}
+    >
       <Toolbar>
         <a href="/">
-          <Typography variant="h6" component="div">
-            Flashcard App
+          <Typography variant="h5" component="div">
+            Just Flashcards
           </Typography>
         </a>
         <Box

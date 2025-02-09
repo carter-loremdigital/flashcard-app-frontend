@@ -1,4 +1,11 @@
-import { Container, Typography, Box, Grid2, Alert } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Box,
+  Grid2,
+  Alert,
+  Divider,
+} from "@mui/material";
 import { useState, useEffect } from "react";
 import api from "../api";
 import { Link } from "react-router-dom";
@@ -67,14 +74,18 @@ const DeckDashboard = (props: Props) => {
             <Box
               sx={{
                 p: 2,
-                border: "1px solid",
-                borderColor: "grey.300",
-                borderRadius: 2,
+                border: "3px solid",
+                borderColor: "black",
+                borderRadius: 1,
                 height: 160,
-                boxShadow: "4px 4px 6px 0px rgba(0,0,0,0.5)",
+                boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "powderblue",
               }}
             >
-              <Typography variant="h6">Create a new deck</Typography>
+              <Typography variant="h6">+ Create a new deck</Typography>
             </Box>
           </Link>
         </Grid2>
@@ -84,14 +95,21 @@ const DeckDashboard = (props: Props) => {
               <Box
                 sx={{
                   p: 2,
-                  border: "1px solid",
-                  borderColor: "grey.300",
-                  borderRadius: 2,
+                  border: "3px solid",
+                  borderColor: "black",
+                  borderRadius: 1,
                   height: 160,
-                  boxShadow: "4px 4px 6px 0px rgba(0,0,0,0.5)",
+                  backgroundColor: "snow",
+                  overflow: "hidden",
+                  boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
                 }}
               >
                 <Typography variant="h6">{deck.name}</Typography>
+                <Divider
+                  color="lightpink"
+                  sx={{ my: 1, mx: -2 }}
+                  variant="fullWidth"
+                />
                 <Typography variant="body2">
                   {deck.description ? deck.description : "No description"}
                 </Typography>

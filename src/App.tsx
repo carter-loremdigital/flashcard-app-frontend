@@ -8,24 +8,28 @@ import DeckDetail from "./pages/DeckDetail";
 import DeckCreate from "./pages/DeckCreate";
 import DeckEdit from "./pages/DeckEdit";
 import DeckStudy from "./pages/DeckStudy";
+import { ThemeProvider } from "@mui/material";
+import theme from "./styles/theme";
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/decks/:deckId" element={<DeckDetail />} />
-            <Route path="/decks/create" element={<DeckCreate />} />
-            <Route path="/decks/:deckId/edit" element={<DeckEdit />} />
-            <Route path="/decks/:deckId/study" element={<DeckStudy />} />
-          </Routes>
-        </Layout>
-      </Router>
-    </AuthProvider>
+    <ThemeProvider theme={theme}>
+      <AuthProvider>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/decks/:deckId" element={<DeckDetail />} />
+              <Route path="/decks/create" element={<DeckCreate />} />
+              <Route path="/decks/:deckId/edit" element={<DeckEdit />} />
+              <Route path="/decks/:deckId/study" element={<DeckStudy />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
