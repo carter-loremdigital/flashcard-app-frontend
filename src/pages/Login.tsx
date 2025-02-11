@@ -39,8 +39,6 @@ const Login = () => {
     setError("");
     try {
       const { access, refresh } = await loginUser(username, password);
-      // localStorage.setItem("token", access);
-      // localStorage.setItem("refreshToken", refresh);
       login(access, refresh);
       navigate("/"); // Redirect to Dashboard or another protected route
     } catch (err: any) {
@@ -54,7 +52,6 @@ const Login = () => {
       sx={{
         maxWidth: 400,
         margin: "auto",
-        // marginY: "auto",
         mt: "10%",
         p: 2,
         borderRadius: 0,
@@ -65,18 +62,18 @@ const Login = () => {
           Login
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Typography
-            variant="caption"
-            // sx={{ textAlign: "center", width: "100%" }}
-            gutterBottom
-          >
+          <Typography variant="caption" gutterBottom>
             Don't have an account yet?{" "}
             <Link component={RouterLink} to="/signup">
               Sign Up
             </Link>
           </Typography>
         </Box>
-        {error && <Alert severity="error">{error}</Alert>}
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        )}
         <form onSubmit={handleSubmit}>
           <TextField
             label="Username"

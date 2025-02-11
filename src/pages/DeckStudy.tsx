@@ -107,10 +107,15 @@ const DeckStudy = () => {
             borderColor: "black",
             boxShadow: "6px 6px 0px 0px rgba(0,0,0,1)",
             p: 4,
+            maxWidth: "max-content",
+            mx: "auto",
           }}
         >
           <Typography variant="h4" gutterBottom>
-            Study Session Complete!
+            {/* Custom completion message based on score */}
+            {correctCount <= flashcards.length / 2
+              ? "Keep trying..."
+              : "Great job!"}
           </Typography>
           <Typography variant="h6">
             You answered {correctCount} out of {flashcards.length} correctly.
@@ -176,7 +181,7 @@ const DeckStudy = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: flipped ? "grey.100" : "white",
+          backgroundColor: flipped ? "grey.300" : "#f5f5f5",
         }}
       >
         <Typography variant="h5">
@@ -189,6 +194,7 @@ const DeckStudy = () => {
           Hint: Click the card to flip it over!
         </Typography>
       </Box>
+
       {/* Answer buttons (only visible when flipped) */}
       {flipped && (
         <Box

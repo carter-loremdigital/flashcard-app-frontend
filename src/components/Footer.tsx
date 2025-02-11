@@ -1,7 +1,6 @@
 import { Box, Typography, Paper } from "@mui/material";
-type Props = {};
 
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <Box
       component="footer"

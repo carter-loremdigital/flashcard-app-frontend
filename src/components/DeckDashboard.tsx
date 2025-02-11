@@ -4,7 +4,7 @@ import api from "../api";
 import { Link as RouterLink } from "react-router-dom";
 import Deck from "./Deck";
 
-// Define a TypeScript interface for a Deck.
+// Define a TypeScript interface for a Deck
 interface Deck {
   id: number;
   name: string;

@@ -3,28 +3,24 @@ import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 let theme = createTheme({
   palette: {
-    primary: { main: "#ff6b6b" }, // Bright orange
+    primary: { main: "#ff6b6b" }, // Salmon
     secondary: { main: "#ffa0a0" },
     background: { default: "#f5f5f5" },
     text: { primary: "#000", secondary: "#333" },
-    error: { main: "#cd5c5c" },
   },
   typography: {
     fontFamily: `Lexend Mega, sans-serif`,
     allVariants: {
       letterSpacing: "-2px", // Shrink letter spacing
     },
-    // h1: { fontWeight: 900, fontSize: "3rem", letterSpacing: "1px" },
-    // h2: { fontWeight: 800, fontSize: "2.5rem", letterSpacing: "1px" },
     h1: { fontWeight: 700 },
     h2: { fontWeight: 700 },
     h3: { fontWeight: 700 },
     h4: { fontWeight: 700 },
     h5: { fontWeight: 700 },
-    subtitle1: { color: "#333" },
     body1: { color: "#000" },
     body2: { color: "#333" },
-    // h6: { fontWeight: 500 },
+    subtitle1: { color: "#333" },
 
     button: { textTransform: "none", fontWeight: 700 },
   },
@@ -38,8 +34,6 @@ let theme = createTheme({
           "&:hover": {
             boxShadow: "6px 6px 0px black",
           },
-          // backgroundColor: "#f5f5f5",
-          // fontWeight: 600,
         },
       },
     },
@@ -61,11 +55,10 @@ let theme = createTheme({
           boxShadow: "4px 4px 0px black",
           borderRadius: "8px",
           padding: "16px",
-          // backgroundImage: "none",
-          // backgroundColor: "transparent",
         },
       },
     },
+
     // Newbrutalist Text Input Styles for Outlined Inputs
     MuiOutlinedInput: {
       styleOverrides: {
@@ -86,12 +79,11 @@ let theme = createTheme({
         },
       },
     },
-    // Style the input label
+    // Style input label
     MuiInputLabel: {
       styleOverrides: {
         root: {
           fontFamily: `"Lexend Mega", sans-serif`,
-          // fontWeight: "bold",
           color: "black",
           // Optional: Adjust the label when focused
           "&.Mui-focused": {
@@ -100,16 +92,6 @@ let theme = createTheme({
         },
       },
     },
-    // If you have helper text or other elements, style them similarly
-    MuiFormHelperText: {
-      styleOverrides: {
-        root: {
-          fontFamily: `"Lexend Mega", sans-serif`,
-          color: "#333",
-        },
-      },
-    },
-    // You can also override MuiTextField if needed
     MuiTextField: {
       styleOverrides: {
         root: {
@@ -119,8 +101,6 @@ let theme = createTheme({
     },
     // Other components...
   },
-  // Optionally, you can add other customizations here.
-  // ".paper-background" : {}
 });
 
 theme = responsiveFontSizes(theme);

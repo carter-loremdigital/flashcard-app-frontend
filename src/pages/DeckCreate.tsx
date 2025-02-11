@@ -17,11 +17,7 @@ interface CardData {
   answer: string;
 }
 
-// type Props = {};
-
 const DeckCreate = () => {
-  //props: Props) => {
-
   // State for deck title and description
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -109,7 +105,6 @@ const DeckCreate = () => {
           backgroundColor: "white",
           p: 4,
           boxShadow: "6px 6px 0px black",
-          // borderRadius: 2,
         }}
       >
         <Container maxWidth="sm" sx={{ py: 4 }}>
@@ -117,8 +112,6 @@ const DeckCreate = () => {
             Create a New Deck
           </Typography>
           <form onSubmit={handleSubmit}>
-            {/* Save Deck Button */}
-
             {/* Deck Title Input */}
             <TextField
               label="Deck Title"
@@ -144,6 +137,7 @@ const DeckCreate = () => {
               rows={3}
             />
 
+            {/* Cancel and Save buttons */}
             <Box
               sx={{
                 display: "flex",

@@ -186,10 +186,9 @@ const DeckEdit = () => {
         sx={{
           border: "3px solid black",
           borderTop: "none",
-          backgroundColor: "white",
+          backgroundColor: "#f5f5f5",
           p: 4,
           boxShadow: "6px 6px 0px black",
-          // borderRadius: 2,
         }}
       >
         <Typography variant="h4" gutterBottom>
