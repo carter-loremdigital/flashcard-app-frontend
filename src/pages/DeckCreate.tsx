@@ -99,7 +99,7 @@ const DeckCreate = () => {
   };
 
   return (
-    <Container sx={{ my: 8, px: 0 }}>
+    <Container>
       <BackBar href="/" />
 
       <Box
@@ -108,8 +108,8 @@ const DeckCreate = () => {
           borderTop: "none",
           backgroundColor: "white",
           p: 4,
-          boxShadow: "4px 4px 0px black",
-          borderRadius: 2,
+          boxShadow: "6px 6px 0px black",
+          // borderRadius: 2,
         }}
       >
         <Container maxWidth="sm" sx={{ py: 4 }}>
@@ -159,8 +159,10 @@ const DeckCreate = () => {
               <Button
                 type="submit"
                 variant="contained"
-                color="primary"
                 startIcon={<Save />}
+                sx={{
+                  color: "white",
+                }}
               >
                 Save
               </Button>
@@ -214,7 +216,6 @@ const DeckCreate = () => {
                     key={index}
                     sx={{
                       border: "2px solid black",
-                      // borderColor: "grey.300",
                       borderRadius: 2,
                       p: 2,
                       mb: 2,
@@ -224,13 +225,12 @@ const DeckCreate = () => {
                   >
                     <Typography variant="h6">Q: {card.question}</Typography>
                     <Divider
-                      sx={{
+                      sx={(theme) => ({
                         my: 2,
                         borderBottomWidth: 2,
-                        borderColor: "#ff5722",
-                        // borderColor: "lightblue",
+                        borderColor: theme.palette.primary.main,
                         borderBottomStyle: "dashed",
-                      }}
+                      })}
                     />
                     <Typography variant="body1">A: {card.answer}</Typography>
                     <Box sx={{ display: "flex", justifyContent: "end" }}>
@@ -238,8 +238,8 @@ const DeckCreate = () => {
                         variant="text"
                         onClick={() => handleDeleteCard(index)}
                         color="error"
+                        startIcon={<Delete />}
                       >
-                        <Delete />
                         Delete
                       </Button>
                     </Box>

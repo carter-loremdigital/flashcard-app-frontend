@@ -4,7 +4,7 @@ type Props = {};
 
 const Hero = (props: Props) => {
   return (
-    <Container maxWidth="lg" sx={{ py: 8, textAlign: "center" }}>
+    <Container maxWidth="lg" sx={{ textAlign: "center" }}>
       <Box>
         <Typography variant="h2" component="h1" gutterBottom>
           Welcome to Flashcard App!!!

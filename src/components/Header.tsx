@@ -1,7 +1,16 @@
-import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box,
+  Paper,
+  Link,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
+import { Link as RouterLink } from "react-router-dom";
 type Props = {};
 
 const Header = (props: Props) => {
@@ -21,33 +30,56 @@ const Header = (props: Props) => {
         boxShadow: "none",
         // borderBottom: "1px solid lightblue",
         color: "black",
+        border: "none",
       }}
     >
       <Toolbar>
-        <a href="/">
-          <Typography variant="h5" component="div">
-            Just Flashcards
-          </Typography>
-        </a>
+        <Link component={RouterLink} to="/" underline="none">
+          <Paper>
+            <Typography
+              variant="h5"
+              component="div"
+              sx={{
+                textDecoration: "underline",
+                textDecorationColor: "#ff6b6b",
+                textDecorationStyle: "dashed",
+                textUnderlineOffset: 6,
+              }}
+            >
+              Just Flashcards
+            </Typography>
+          </Paper>
+        </Link>
         <Box
           sx={{
             marginLeft: "auto",
           }}
         >
           {isAuthenticated ? (
-            <Button onClick={handleLogout} color="inherit">
+            <Button
+              onClick={handleLogout}
+              color="inherit"
+              sx={{ backgroundColor: "#f5f5f5" }}
+            >
               Log Out
             </Button>
           ) : (
-            <Button href="/login" color="inherit">
-              Log In
-            </Button>
-          )}
-
-          {!isAuthenticated && (
-            <Button href="/signup" color="inherit">
-              Sign Up
-            </Button>
+            <Box sx={{ display: "flex", gap: 1 }}>
+              <Button
+                href="/login"
+                color="inherit"
+                sx={{ backgroundColor: "#f5f5f5" }}
+              >
+                Log In
+              </Button>
+              <Button
+                href="/signup"
+                color="inherit"
+                sx={{ backgroundColor: "#f5f5f5" }}
+              >
+                Sign Up
+              </Button>
+            </Box>
           )}
         </Box>
       </Toolbar>

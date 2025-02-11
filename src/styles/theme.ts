@@ -3,10 +3,11 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
-    primary: { main: "#ff5722" }, // Bright orange
-    secondary: { main: "#ffcc00" },
-    background: { default: "#fff", paper: "#fafafa" },
+    primary: { main: "#ff6b6b" }, // Bright orange
+    secondary: { main: "#ffa0a0" },
+    background: { default: "#f5f5f5" },
     text: { primary: "#000", secondary: "#333" },
+    error: { main: "#cd5c5c" },
   },
   typography: {
     fontFamily: `Lexend Mega, sans-serif`,
@@ -15,6 +16,16 @@ const theme = createTheme({
     },
     // h1: { fontWeight: 900, fontSize: "3rem", letterSpacing: "1px" },
     // h2: { fontWeight: 800, fontSize: "2.5rem", letterSpacing: "1px" },
+    h1: { fontWeight: 700 },
+    h2: { fontWeight: 700 },
+    h3: { fontWeight: 700 },
+    h4: { fontWeight: 700 },
+    h5: { fontWeight: 700 },
+    subtitle1: { color: "#333" },
+    body1: { color: "#000" },
+    body2: { color: "#333" },
+    // h6: { fontWeight: 500 },
+
     button: { textTransform: "none", fontWeight: 700 },
   },
   components: {
@@ -27,6 +38,8 @@ const theme = createTheme({
           "&:hover": {
             boxShadow: "6px 6px 0px black",
           },
+          // backgroundColor: "#f5f5f5",
+          // fontWeight: 600,
         },
       },
     },
@@ -41,12 +54,25 @@ const theme = createTheme({
         },
       },
     },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          border: "3px solid black",
+          boxShadow: "4px 4px 0px black",
+          borderRadius: "8px",
+          padding: "16px",
+          // backgroundImage: "none",
+          // backgroundColor: "transparent",
+        },
+      },
+    },
     // Newbrutalist Text Input Styles for Outlined Inputs
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
           borderRadius: 0,
-          // Apply box shadow to notched outline to prevent label from overlappings
+          // Apply box shadow to notched outline to prevent label from overlapping
+          backgroundColor: "white",
           "&:hover .MuiOutlinedInput-notchedOutline": {
             boxShadow: "6px 6px 0px black",
           },
@@ -65,7 +91,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           fontFamily: `"Lexend Mega", sans-serif`,
-          fontWeight: "bold",
+          // fontWeight: "bold",
           color: "black",
           // Optional: Adjust the label when focused
           "&.Mui-focused": {
@@ -94,6 +120,7 @@ const theme = createTheme({
     // Other components...
   },
   // Optionally, you can add other customizations here.
+  // ".paper-background" : {}
 });
 
 export default theme;

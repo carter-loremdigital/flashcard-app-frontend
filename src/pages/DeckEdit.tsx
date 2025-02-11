@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
+import { Close, Save, Delete, Add } from "@mui/icons-material";
+import BackBar from "../components/BackBar";
 
 // TypeScript interfaces for Deck and Flashcard
 interface Deck {
@@ -180,107 +182,148 @@ const DeckEdit = (props: Props) => {
   }
 
   return (
-    <Container sx={{ py: 8 }}>
-      <form onSubmit={handleSave}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            mt: 4,
-            mb: 2,
-          }}
-        >
-          <Button variant="contained" type="submit">
-            Save
-          </Button>
+    <Container>
+      <BackBar href={`/decks/${deckId}`} />
 
-          <Box sx={{ display: "flex", gap: 1 }}>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={() => navigate(`/decks/${deckId}`)}
-            >
-              Cancel
-            </Button>
+      <Box
+        sx={{
+          border: "3px solid black",
+          borderTop: "none",
+          backgroundColor: "white",
+          p: 4,
+          boxShadow: "6px 6px 0px black",
+          // borderRadius: 2,
+        }}
+      >
+        <Typography variant="h4" gutterBottom>
+          Edit {deck?.name}
+        </Typography>
+        <form onSubmit={handleSave}>
+          {/* Editable deck fields */}
+          <TextField
+            label="Deck Title"
+            value={deckName}
+            onChange={handleNameChange}
+            fullWidth
+            margin="normal"
+            required
+          />
+          <TextField
+            label="Deck Description"
+            value={deckDescription}
+            onChange={handleDescriptionChange}
+            fullWidth
+            margin="normal"
+            multiline
+            rows={3}
+          />
+
+          {/* <Divider sx={{ my: 3 }} />
+        
+        */}
+
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              my: 2,
+            }}
+          >
             <Button
               variant="contained"
               color="error"
               onClick={handleDeleteDeck}
+              startIcon={<Delete />}
             >
               Delete Deck
             </Button>
-          </Box>
-        </Box>
-        {/* Editable deck fields */}
-        <TextField
-          label="Deck Title"
-          value={deckName}
-          onChange={handleNameChange}
-          fullWidth
-          margin="normal"
-          required
-        />
-        <TextField
-          label="Deck Description"
-          value={deckDescription}
-          onChange={handleDescriptionChange}
-          fullWidth
-          margin="normal"
-          multiline
-          rows={3}
-        />
-
-        <Divider sx={{ my: 3 }} />
-
-        <Typography variant="h5" gutterBottom>
-          Edit Flashcards
-        </Typography>
-        {flashcards.map((card, index) => (
-          <Box
-            key={index}
-            sx={{
-              border: "1px solid",
-              borderColor: "grey.300",
-              borderRadius: 2,
-              p: 2,
-              mb: 2,
-            }}
-          >
-            <TextField
-              label="Question"
-              value={card.question}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                handleFlashcardChange(index, "question", e.target.value)
-              }
-              fullWidth
-              margin="normal"
-              required
-            />
-            <TextField
-              label="Answer"
-              value={card.answer}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                handleFlashcardChange(index, "answer", e.target.value)
-              }
-              fullWidth
-              margin="normal"
-              required
-            />
-            <Box sx={{ display: "flex", justifyContent: "end" }}>
+            <Box sx={{ display: "flex", gap: 1 }}>
               <Button
+                variant="outlined"
                 color="error"
-                onClick={() => handleDeleteFlashcard(index)}
-                sx={{ mt: 1 }}
+                onClick={() => navigate(`/decks/${deckId}`)}
+                startIcon={<Close />}
               >
-                Delete
+                Cancel
+              </Button>
+              <Button
+                variant="contained"
+                type="submit"
+                startIcon={<Save />}
+                sx={{ color: "white" }}
+              >
+                Save
               </Button>
             </Box>
           </Box>
-        ))}
-        <Button variant="outlined" onClick={handleAddFlashcard} sx={{ mb: 3 }}>
-          Add New Card
-        </Button>
-      </form>
+
+          <Box sx={{ mt: 4 }}>
+            <Typography variant="h5" gutterBottom>
+              Edit Flashcards
+            </Typography>
+            {flashcards.map((card, index) => (
+              <Box
+                key={index}
+                sx={{
+                  border: "2px solid black",
+                  borderRadius: 2,
+                  p: 2,
+                  mb: 2,
+                  boxShadow: "4px 4px 0px black",
+                  backgroundColor: "#fffff0",
+                }}
+              >
+                <TextField
+                  label="Question"
+                  value={card.question}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    handleFlashcardChange(index, "question", e.target.value)
+                  }
+                  fullWidth
+                  margin="normal"
+                  required
+                />
+                <Divider
+                  sx={(theme) => ({
+                    my: 2,
+                    borderBottomWidth: 2,
+                    borderColor: theme.palette.primary.main,
+                    borderBottomStyle: "dashed",
+                  })}
+                />
+                <TextField
+                  label="Answer"
+                  value={card.answer}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    handleFlashcardChange(index, "answer", e.target.value)
+                  }
+                  fullWidth
+                  margin="normal"
+                  required
+                />
+                <Box sx={{ display: "flex", justifyContent: "end" }}>
+                  <Button
+                    color="error"
+                    onClick={() => handleDeleteFlashcard(index)}
+                    sx={{ mt: 1, backgroundColor: "#fff" }}
+                    startIcon={<Delete />}
+                  >
+                    Delete
+                  </Button>
+                </Box>
+              </Box>
+            ))}
+            <Button
+              variant="outlined"
+              onClick={handleAddFlashcard}
+              sx={{ mb: 3 }}
+              startIcon={<Add />}
+            >
+              Add New Card
+            </Button>
+          </Box>
+        </form>
+      </Box>
     </Container>
   );
 };

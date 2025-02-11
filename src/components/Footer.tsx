@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Paper } from "@mui/material";
 type Props = {};
 
 const Footer = (props: Props) => {
@@ -6,15 +6,18 @@ const Footer = (props: Props) => {
     <Box
       component="footer"
       sx={{
-        backgroundColor: "primary.main",
         color: "white",
         py: 2,
         textAlign: "center",
+        justifyContent: "center",
+        display: "flex",
       }}
     >
-      <Typography variant="body1">
-        © {new Date().getFullYear()} Flashcard App. All rights reserved.
-      </Typography>
+      <Paper sx={{ maxWidth: "max-content", backgroundColor: "#fdfd96" }}>
+        <Typography variant="body1">
+          © {new Date().getFullYear()} Flashcard App. All rights reserved.
+        </Typography>
+      </Paper>
     </Box>
   );
 };

@@ -83,7 +83,7 @@ const DeckDetail = (props: Props) => {
   }
 
   return (
-    <Container sx={{ my: 8, px: 0 }}>
+    <Container>
       <Box sx={{ borderRadius: 2 }}>
         <BackBar href="/" />
 
@@ -93,8 +93,9 @@ const DeckDetail = (props: Props) => {
             borderTop: "none",
             backgroundColor: "white",
             p: 4,
-            boxShadow: "4px 4px 0px black",
-            borderRadius: 2,
+            boxShadow: "6px 6px 0px black",
+
+            overflow: "hidden",
           }}
         >
           <Typography variant="h4" gutterBottom>
@@ -103,7 +104,14 @@ const DeckDetail = (props: Props) => {
           <Typography variant="subtitle1" gutterBottom>
             {deck?.description || "No description available."}
           </Typography>
-          <Box sx={{ display: "flex", justifyContent: "end", gap: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: { xs: "center", sm: "end" },
+              gap: 1,
+              my: 2,
+            }}
+          >
             <Button href={`/decks/${deckId}/edit`} variant="outlined">
               <Edit sx={{ marginRight: "4px" }} />
               Edit
@@ -112,6 +120,7 @@ const DeckDetail = (props: Props) => {
               href={`/decks/${deckId}/study`}
               variant="contained"
               disabled={flashcards?.length ? false : true}
+              sx={{ color: "white" }}
             >
               <Lightbulb sx={{ marginRight: "4px" }} />
               Study
@@ -128,19 +137,18 @@ const DeckDetail = (props: Props) => {
                     borderRadius: 2,
                     p: 2,
                     mb: 2,
-                    boxShadow: "2px 2px 0px black",
+                    boxShadow: "4px 4px 0px black",
                     backgroundColor: "#fffff0",
                   }}
                 >
                   <Typography variant="h6">Q: {flashcard.question}</Typography>
                   <Divider
-                    sx={{
+                    sx={(theme) => ({
                       my: 2,
                       borderBottomWidth: 2,
-                      borderColor: "#ff5722",
-                      // borderColor: "lightblue",
+                      borderColor: theme.palette.primary.main,
                       borderBottomStyle: "dashed",
-                    }}
+                    })}
                   />
                   <Typography variant="body1">A: {flashcard.answer}</Typography>
                 </Box>
