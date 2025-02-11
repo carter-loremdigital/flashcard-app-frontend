@@ -1,7 +1,3 @@
-// import { Card, CardContent, Typography } from "@mui/material";
-// import Box from "@mui/material";
-// import Divider from "@mui/material";
-// import Typography from "@mui/material";
 import { Box, Typography, Divider } from "@mui/material";
 
 type Props = {
@@ -41,7 +37,6 @@ const Deck = ({ index, name, description }: Props) => {
       </Typography>
       <Divider
         sx={(theme) => ({
-          // my: 1,
           mb: 1,
           mx: -2,
           borderBottomWidth: 2,
@@ -54,7 +49,7 @@ const Deck = ({ index, name, description }: Props) => {
           height: "100%",
           // Create blue horizontal lines using a repeating linear gradient
           backgroundImage:
-            "repeating-linear-gradient(to bottom, transparent, transparent 19px, lightblue 19px, lightblue 20px)",
+            "repeating-linear-gradient(to bottom, transparent, transparent 18px, lightblue 18px, lightblue 20px)",
           backgroundSize: "100% auto",
           mx: -2,
           px: 2,

@@ -11,6 +11,7 @@ import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { Close, Save, Delete, Add } from "@mui/icons-material";
 import BackBar from "../components/BackBar";
+import { MAX_CARDS } from "../utils/arrayUtils";
 
 interface CardData {
   question: string;
@@ -99,13 +100,12 @@ const DeckCreate = () => {
       <BackBar href="/" />
 
       <Box
-        sx={{
+        sx={(theme) => ({
           border: "3px solid black",
           borderTop: "none",
-          backgroundColor: "white",
-          p: 4,
+          backgroundColor: theme.palette.background.default,
           boxShadow: "6px 6px 0px black",
-        }}
+        })}
       >
         <Container maxWidth="sm" sx={{ py: 4 }}>
           <Typography variant="h4" gutterBottom>
@@ -190,6 +190,7 @@ const DeckCreate = () => {
               onClick={handleAddCard}
               sx={{ mt: 2 }}
               startIcon={<Add />}
+              disabled={cards.length == MAX_CARDS}
             >
               Add Card
             </Button>
@@ -203,7 +204,6 @@ const DeckCreate = () => {
                     key={index}
                     sx={{
                       border: "3px solid black",
-                      // borderRadius: 2,
                       p: 2,
                       mb: 2,
                       boxShadow: "4px 4px 0px black",

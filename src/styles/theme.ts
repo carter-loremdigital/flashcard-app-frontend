@@ -55,6 +55,7 @@ let theme = createTheme({
           boxShadow: "4px 4px 0px black",
           borderRadius: "8px",
           padding: "16px",
+          backgroundColor: "#f5f5f5",
         },
       },
     },
@@ -65,7 +66,6 @@ let theme = createTheme({
         root: {
           borderRadius: 0,
           // Apply box shadow to notched outline to prevent label from overlapping
-          backgroundColor: "white",
           "&:hover .MuiOutlinedInput-notchedOutline": {
             boxShadow: "6px 6px 0px black",
           },

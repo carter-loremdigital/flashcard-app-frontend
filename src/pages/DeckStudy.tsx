@@ -126,9 +126,6 @@ const DeckStudy = () => {
             <Button
               variant="contained"
               onClick={() => window.location.reload()}
-              sx={{
-                color: "white",
-              }}
             >
               Restart
             </Button>
@@ -169,7 +166,7 @@ const DeckStudy = () => {
       {/* Flashcard display */}
       <Box
         onClick={handleFlip}
-        sx={{
+        sx={(theme) => ({
           cursor: "pointer",
           borderRadius: 0,
           border: "3px solid",
@@ -181,8 +178,10 @@ const DeckStudy = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: flipped ? "grey.300" : "#f5f5f5",
-        }}
+          backgroundColor: flipped
+            ? "grey.300"
+            : theme.palette.background.default,
+        })}
       >
         <Typography variant="h5">
           {flipped ? currentCard.answer : currentCard.question}

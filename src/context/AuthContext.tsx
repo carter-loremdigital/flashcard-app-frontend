@@ -1,6 +1,5 @@
 // src/context/AuthContext.tsx
 import React, { createContext, useState, useEffect, ReactNode } from "react";
-// import { logoutUser } from "../api/auth";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -33,7 +32,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setIsAuthenticated(true);
   };
 
-  // Use logoutUser function created in auth.tsx
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");

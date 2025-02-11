@@ -27,9 +27,9 @@ const Header = () => {
       sx={{
         backgroundColor: "transparent",
         boxShadow: "none",
-        // borderBottom: "1px solid lightblue",
         color: "black",
         border: "none",
+        px: 0,
       }}
     >
       <Toolbar>
@@ -38,12 +38,12 @@ const Header = () => {
             <Typography
               variant="h5"
               component="div"
-              sx={{
+              sx={(theme) => ({
                 textDecoration: "underline",
-                textDecorationColor: "#ff6b6b",
+                textDecorationColor: theme.palette.primary.main,
                 textDecorationStyle: "dashed",
-                textUnderlineOffset: 6,
-              }}
+                textUnderlineOffset: "6px",
+              })}
             >
               Just Flashcards
             </Typography>

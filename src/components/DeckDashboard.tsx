@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import api from "../api";
 import { Link as RouterLink } from "react-router-dom";
 import Deck from "./Deck";
+import { Add } from "@mui/icons-material";
 
 // Define a TypeScript interface for a Deck
 interface Deck {
@@ -65,7 +66,7 @@ const DeckDashboard = () => {
         Your Decks
       </Typography>
       <Grid2 container spacing={4}>
-        <Grid2 size={{ xs: 12, md: 4 }}>
+        <Grid2 size={{ xs: 12, sm: 6, md: 4 }}>
           <Link
             component={RouterLink}
             to="/decks/create"
@@ -76,15 +77,13 @@ const DeckDashboard = () => {
                 p: 2,
                 border: "3px solid",
                 borderColor: "black",
-                // borderRadius: 2,
                 height: 160,
                 boxShadow: "6px 6px 0px 0px rgba(0,0,0,1)",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 color: "#000",
-
-                backgroundColor: "powderblue",
+                backgroundColor: "#a7dbd8",
                 transition: "box-shadow 0.3s ease, transform 0.3s ease",
                 ":hover": {
                   boxShadow: "8px 8px 0px 0px rgba(0,0,0,1)",
@@ -92,12 +91,15 @@ const DeckDashboard = () => {
                 },
               }}
             >
-              <Typography variant="h6">+ Create a new deck</Typography>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Add />
+                <Typography variant="h6">Create a new deck</Typography>
+              </Box>
             </Box>
           </Link>
         </Grid2>
         {decks.map((deck, index) => (
-          <Grid2 key={deck.id} size={{ xs: 12, md: 4 }}>
+          <Grid2 key={deck.id} size={{ xs: 12, sm: 6, md: 4 }}>
             <Link
               component={RouterLink}
               to={`/decks/${deck.id}`}

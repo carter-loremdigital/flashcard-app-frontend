@@ -85,14 +85,15 @@ const DeckDetail = () => {
         <BackBar href="/" />
 
         <Box
-          sx={{
+          sx={(theme) => ({
             border: "3px solid black",
             borderTop: "none",
-            backgroundColor: "#f5f5f5",
-            p: 4,
+            backgroundColor: theme.palette.background.default,
+            p: { xs: 2, sm: 4 },
+
             boxShadow: "6px 6px 0px black",
             overflow: "hidden",
-          }}
+          })}
         >
           <Typography variant="h4" gutterBottom>
             {deck?.name}

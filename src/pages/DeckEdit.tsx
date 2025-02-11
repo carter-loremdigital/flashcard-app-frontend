@@ -14,6 +14,7 @@ import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { Close, Save, Delete, Add } from "@mui/icons-material";
 import BackBar from "../components/BackBar";
+import { MAX_CARDS } from "../utils/arrayUtils";
 
 // TypeScript interfaces for Deck and Flashcard
 interface Deck {
@@ -183,13 +184,14 @@ const DeckEdit = () => {
       <BackBar href={`/decks/${deckId}`} />
 
       <Box
-        sx={{
+        sx={(theme) => ({
           border: "3px solid black",
           borderTop: "none",
-          backgroundColor: "#f5f5f5",
-          p: 4,
+          backgroundColor: theme.palette.background.default,
+          p: { xs: 2, sm: 4 },
+
           boxShadow: "6px 6px 0px black",
-        }}
+        })}
       >
         <Typography variant="h4" gutterBottom>
           Edit {deck?.name}
@@ -312,6 +314,7 @@ const DeckEdit = () => {
               onClick={handleAddFlashcard}
               sx={{ mb: 3 }}
               startIcon={<Add />}
+              disabled={flashcards.length == MAX_CARDS}
             >
               Add New Card
             </Button>

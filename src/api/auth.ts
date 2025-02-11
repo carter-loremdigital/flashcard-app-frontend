@@ -1,4 +1,3 @@
-// src/api/auth.ts
 import api from "./index";
 
 export interface AuthResponse {

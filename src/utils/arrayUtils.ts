@@ -1,3 +1,6 @@
+// Maximum number of cards that can be added to a deck
+export const MAX_CARDS = 100;
+
 // Helper function for shuffling flashcards using the Fisher-Yates shuffling algorithm
 export function shuffleArray<T>(array: T[]): T[] {
   // Create a shallow copy to avoid mutating the original array
