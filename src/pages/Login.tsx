@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
+import { useState, ChangeEvent, FormEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Card,
@@ -7,13 +7,14 @@ import {
   TextField,
   Button,
   Alert,
+  Box,
+  Link,
 } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import { loginUser } from "../api/auth";
 import { AuthContext } from "../context/AuthContext"; // Context function for state management
 
-type Props = {};
-
-const Login = (props: Props) => {
+const Login = () => {
   // State for the form fields
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -49,11 +50,32 @@ const Login = (props: Props) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 400, margin: "auto", mt: 8, p: 2 }}>
+    <Card
+      sx={{
+        maxWidth: 400,
+        margin: "auto",
+        // marginY: "auto",
+        mt: "10%",
+        p: 2,
+        borderRadius: 0,
+      }}
+    >
       <CardContent>
         <Typography variant="h5" align="center" gutterBottom>
           Login
         </Typography>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Typography
+            variant="caption"
+            // sx={{ textAlign: "center", width: "100%" }}
+            gutterBottom
+          >
+            Don't have an account yet?{" "}
+            <Link component={RouterLink} to="/signup">
+              Sign Up
+            </Link>
+          </Typography>
+        </Box>
         {error && <Alert severity="error">{error}</Alert>}
         <form onSubmit={handleSubmit}>
           <TextField

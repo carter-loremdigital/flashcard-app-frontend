@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   Container,
@@ -8,8 +8,11 @@ import {
   LinearProgress,
   Button,
   Alert,
+  Stack,
+  Paper,
 } from "@mui/material";
 import api from "../api";
+import { Check, Close } from "@mui/icons-material";
 import { shuffleArray } from "../utils/arrayUtils";
 
 // Define a TypeScript interface for Flashcard.
@@ -19,9 +22,7 @@ interface Flashcard {
   answer: string;
 }
 
-type Props = {};
-
-const DeckStudy = (props: Props) => {
+const DeckStudy = () => {
   const { deckId } = useParams<{ deckId: string }>();
   const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -98,21 +99,39 @@ const DeckStudy = (props: Props) => {
   // If the study session is complete, show the final score.
   if (completed) {
     return (
-      <Container sx={{ py: 8, textAlign: "center" }}>
-        <Typography variant="h4" gutterBottom>
-          Study Session Complete!
-        </Typography>
-        <Typography variant="h6">
-          You answered {correctCount} out of {flashcards.length} correctly.
-        </Typography>
-        <Box sx={{ mt: 4, display: "flex", gap: 1, justifyContent: "center" }}>
-          <Button variant="contained" onClick={() => window.location.reload()}>
-            Restart Study Session
-          </Button>
-          <Button href="/" variant="outlined">
-            Home
-          </Button>
-        </Box>
+      <Container sx={{ textAlign: "center", mt: "10%" }}>
+        <Paper
+          sx={{
+            borderRadius: 0,
+            border: "3px solid",
+            borderColor: "black",
+            boxShadow: "6px 6px 0px 0px rgba(0,0,0,1)",
+            p: 4,
+          }}
+        >
+          <Typography variant="h4" gutterBottom>
+            Study Session Complete!
+          </Typography>
+          <Typography variant="h6">
+            You answered {correctCount} out of {flashcards.length} correctly.
+          </Typography>
+          <Box
+            sx={{ mt: 4, display: "flex", gap: 1, justifyContent: "center" }}
+          >
+            <Button
+              variant="contained"
+              onClick={() => window.location.reload()}
+              sx={{
+                color: "white",
+              }}
+            >
+              Restart
+            </Button>
+            <Button href="/" variant="outlined">
+              Home
+            </Button>
+          </Box>
+        </Paper>
       </Container>
     );
   }
@@ -121,26 +140,39 @@ const DeckStudy = (props: Props) => {
   const currentCard = flashcards[currentIndex];
 
   return (
-    <Container sx={{ py: 8, textAlign: "center" }}>
+    <Container sx={{ py: 6, textAlign: "center" }}>
       {/* Progress bar */}
-      <Box sx={{ mb: 2 }}>
-        <LinearProgress variant="determinate" value={progress} />
+      <Stack gap={1}>
+        <Typography variant="h5">Progress</Typography>
+        <LinearProgress
+          variant="determinate"
+          value={progress}
+          color="info"
+          sx={{
+            borderRadius: 0,
+            height: "24px",
+            border: "3px solid",
+            borderColor: "black",
+            boxShadow: "6px 6px 0px 0px rgba(0,0,0,1)",
+          }}
+        />
         <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
           Card {currentIndex + 1} of {flashcards.length}
         </Typography>
-      </Box>
+      </Stack>
 
       {/* Flashcard display */}
       <Box
         onClick={handleFlip}
         sx={{
           cursor: "pointer",
-          border: "1px solid",
-          borderColor: "grey.400",
-          borderRadius: 2,
+          borderRadius: 0,
+          border: "3px solid",
+          borderColor: "black",
+          boxShadow: "6px 6px 0px 0px rgba(0,0,0,1)",
           p: 4,
-          mb: 4,
-          minHeight: "150px",
+          my: 4,
+          minHeight: "200px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -152,13 +184,25 @@ const DeckStudy = (props: Props) => {
         </Typography>
       </Box>
 
+      <Box sx={{ mb: 4 }}>
+        <Typography variant="caption">
+          Hint: Click the card to flip it over!
+        </Typography>
+      </Box>
       {/* Answer buttons (only visible when flipped) */}
       {flipped && (
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 2,
+          }}
+        >
           <Button
             variant="contained"
             color="error"
             onClick={() => handleAnswer(false)}
+            startIcon={<Close />}
           >
             Incorrect
           </Button>
@@ -166,6 +210,7 @@ const DeckStudy = (props: Props) => {
             variant="contained"
             color="success"
             onClick={() => handleAnswer(true)}
+            startIcon={<Check />}
           >
             Correct
           </Button>

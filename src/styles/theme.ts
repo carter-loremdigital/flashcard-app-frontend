@@ -1,7 +1,7 @@
 // theme.ts
-import { createTheme } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
-const theme = createTheme({
+let theme = createTheme({
   palette: {
     primary: { main: "#ff6b6b" }, // Bright orange
     secondary: { main: "#ffa0a0" },
@@ -122,5 +122,7 @@ const theme = createTheme({
   // Optionally, you can add other customizations here.
   // ".paper-background" : {}
 });
+
+theme = responsiveFontSizes(theme);
 
 export default theme;

@@ -11,9 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import { Link as RouterLink } from "react-router-dom";
-type Props = {};
 
-const Header = (props: Props) => {
+const Header = () => {
   const navigate = useNavigate();
   const { isAuthenticated, logout } = useContext(AuthContext);
 
@@ -64,7 +63,13 @@ const Header = (props: Props) => {
               Log Out
             </Button>
           ) : (
-            <Box sx={{ display: "flex", gap: 1 }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 1,
+                flexDirection: { xs: "column", sm: "row" },
+              }}
+            >
               <Button
                 href="/login"
                 color="inherit"

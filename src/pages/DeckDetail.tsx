@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   Container,
@@ -7,12 +7,11 @@ import {
   Box,
   CircularProgress,
   Button,
-  Divider,
 } from "@mui/material";
 import api from "../api";
 import { Edit, Lightbulb } from "@mui/icons-material";
 import BackBar from "../components/BackBar";
-// import { X } from "@mui/icons-material";
+import Flashcard from "../components/Flashcard";
 
 // TypeScript interfaces for Deck and Flashcard
 interface Deck {
@@ -27,9 +26,7 @@ interface Flashcard {
   answer: string;
 }
 
-type Props = {};
-
-const DeckDetail = (props: Props) => {
+const DeckDetail = () => {
   // Extract deckId from the URL
   const { deckId } = useParams<{ deckId: string }>();
 
@@ -107,7 +104,7 @@ const DeckDetail = (props: Props) => {
           <Box
             sx={{
               display: "flex",
-              justifyContent: { xs: "center", sm: "end" },
+              justifyContent: { xs: "space-between", sm: "end" },
               gap: 1,
               my: 2,
             }}
@@ -120,7 +117,6 @@ const DeckDetail = (props: Props) => {
               href={`/decks/${deckId}/study`}
               variant="contained"
               disabled={flashcards?.length ? false : true}
-              sx={{ color: "white" }}
             >
               <Lightbulb sx={{ marginRight: "4px" }} />
               Study
@@ -129,29 +125,11 @@ const DeckDetail = (props: Props) => {
           <Box sx={{ mt: 4 }}>
             {flashcards.length > 0 ? (
               flashcards.map((flashcard) => (
-                <Box
-                  key={flashcard.id}
-                  sx={{
-                    border: "2px solid black",
-                    // borderColor: "grey.300",
-                    borderRadius: 2,
-                    p: 2,
-                    mb: 2,
-                    boxShadow: "4px 4px 0px black",
-                    backgroundColor: "#fffff0",
-                  }}
-                >
-                  <Typography variant="h6">Q: {flashcard.question}</Typography>
-                  <Divider
-                    sx={(theme) => ({
-                      my: 2,
-                      borderBottomWidth: 2,
-                      borderColor: theme.palette.primary.main,
-                      borderBottomStyle: "dashed",
-                    })}
-                  />
-                  <Typography variant="body1">A: {flashcard.answer}</Typography>
-                </Box>
+                <Flashcard
+                  id={flashcard.id}
+                  question={flashcard.question}
+                  answer={flashcard.answer}
+                />
               ))
             ) : (
               <Typography variant="body1">

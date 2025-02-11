@@ -3,6 +3,7 @@
 body {
   /* Base paper color */
   background-color: #fffff0;
+  margin: 0;
 
   /* Create grid lines using two linear gradients */
   background-image: 

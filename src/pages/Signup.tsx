@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
+import { useState, ChangeEvent, FormEvent, useContext } from "react";
 import {
   Alert,
   Card,
@@ -11,9 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { signupUser, loginUser } from "../api/auth"; // API functions to call the backend
 import { AuthContext } from "../context/AuthContext"; // Context for authentication state
 
-type Props = {};
-
-const Signup = (props: Props) => {
+const Signup = () => {
   // State variables for form fields and error messages
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -61,12 +59,18 @@ const Signup = (props: Props) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 400, margin: "auto", mt: 8, p: 2 }}>
+    <Card
+      sx={{ maxWidth: 400, margin: "auto", p: 2, borderRadius: 0, mt: "10%" }}
+    >
       <CardContent>
         <Typography variant="h5" align="center" gutterBottom>
           Sign Up
         </Typography>
-        {error && <Alert severity="error">{error}</Alert>}
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        )}
         <form onSubmit={handleSubmit}>
           <TextField
             label="Username"

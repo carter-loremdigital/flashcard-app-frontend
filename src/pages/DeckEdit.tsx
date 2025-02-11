@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useParams } from "react-router-dom";
 import {
   Container,
@@ -8,7 +8,6 @@ import {
   CircularProgress,
   Button,
   Divider,
-  Link as MUILink,
   TextField,
 } from "@mui/material";
 import api from "../api";
@@ -29,9 +28,7 @@ interface Flashcard {
   answer: string;
 }
 
-type Props = {};
-
-const DeckEdit = (props: Props) => {
+const DeckEdit = () => {
   // Extract deckId from the URL
   const { deckId } = useParams<{ deckId: string }>();
   const navigate = useNavigate();
@@ -218,15 +215,13 @@ const DeckEdit = (props: Props) => {
             rows={3}
           />
 
-          {/* <Divider sx={{ my: 3 }} />
-        
-        */}
-
           <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
               my: 2,
+              flexDirection: { xs: "column", sm: "row" },
+              gap: 2,
             }}
           >
             <Button
@@ -237,7 +232,13 @@ const DeckEdit = (props: Props) => {
             >
               Delete Deck
             </Button>
-            <Box sx={{ display: "flex", gap: 1 }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 1,
+                justifyContent: { xs: "space-between", sm: "inherit" },
+              }}
+            >
               <Button
                 variant="outlined"
                 color="error"
@@ -246,12 +247,7 @@ const DeckEdit = (props: Props) => {
               >
                 Cancel
               </Button>
-              <Button
-                variant="contained"
-                type="submit"
-                startIcon={<Save />}
-                sx={{ color: "white" }}
-              >
+              <Button variant="contained" type="submit" startIcon={<Save />}>
                 Save
               </Button>
             </Box>
@@ -265,8 +261,7 @@ const DeckEdit = (props: Props) => {
               <Box
                 key={index}
                 sx={{
-                  border: "2px solid black",
-                  borderRadius: 2,
+                  border: "3px solid black",
                   p: 2,
                   mb: 2,
                   boxShadow: "4px 4px 0px black",

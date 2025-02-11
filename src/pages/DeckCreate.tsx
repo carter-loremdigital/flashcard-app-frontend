@@ -147,7 +147,7 @@ const DeckCreate = () => {
             <Box
               sx={{
                 display: "flex",
-                justifyContent: "end",
+                justifyContent: { xs: "space-between", sm: "end" },
                 gap: 1,
                 mb: 4,
                 mt: 2,
@@ -156,21 +156,14 @@ const DeckCreate = () => {
               <Button href="/" color="error" startIcon={<Close />}>
                 Cancel
               </Button>
-              <Button
-                type="submit"
-                variant="contained"
-                startIcon={<Save />}
-                sx={{
-                  color: "white",
-                }}
-              >
+              <Button type="submit" variant="contained" startIcon={<Save />}>
                 Save
               </Button>
             </Box>
 
             {/* Section for Adding Cards */}
             <Typography variant="h6" sx={{ mt: 3 }}>
-              Add Cards
+              Add Cards ({cards.length})
             </Typography>
             <TextField
               label="Card Question"
@@ -215,11 +208,11 @@ const DeckCreate = () => {
                   <Box
                     key={index}
                     sx={{
-                      border: "2px solid black",
-                      borderRadius: 2,
+                      border: "3px solid black",
+                      // borderRadius: 2,
                       p: 2,
                       mb: 2,
-                      boxShadow: "2px 2px 0px black",
+                      boxShadow: "4px 4px 0px black",
                       backgroundColor: "#fffff0",
                     }}
                   >
