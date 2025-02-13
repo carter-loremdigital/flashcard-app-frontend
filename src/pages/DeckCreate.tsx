@@ -96,7 +96,11 @@ const DeckCreate = () => {
   };
 
   return (
-    <Container>
+    <Container
+      sx={{
+        p: { xs: 0, sm: "inherit" },
+      }}
+    >
       <BackBar href="/" />
 
       <Box

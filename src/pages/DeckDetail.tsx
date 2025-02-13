@@ -80,7 +80,11 @@ const DeckDetail = () => {
   }
 
   return (
-    <Container>
+    <Container
+      sx={{
+        p: { xs: 0, sm: "inherit" },
+      }}
+    >
       <Box sx={{ borderRadius: 2 }}>
         <BackBar href="/" />
 

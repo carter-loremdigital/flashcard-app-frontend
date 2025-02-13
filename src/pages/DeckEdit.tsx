@@ -180,7 +180,11 @@ const DeckEdit = () => {
   }
 
   return (
-    <Container>
+    <Container
+      sx={{
+        p: { xs: 0, sm: "inherit" },
+      }}
+    >
       <BackBar href={`/decks/${deckId}`} />
 
       <Box
